@@ -1,18 +1,24 @@
 body {
   font-family: arial, sans-serif;
-  background: linear-gradient(
-    180.3deg,
-    rgb(221, 221, 221) 5.5%,
-    rgb(110, 136, 161) 90.2%
-  );
+  background-image: url(/images/sky.jpg);
+  background-size: cover;
 }
 h1 {
-  color: #2c3639;
+  color: #000;
   font-size: 30px;
   font-weight: 700;
   line-height: 38px;
   padding: 0;
   margin: 0 0 0 30px;
+}
+small {
+  color: #000;
+  position: fixed;
+  bottom: 25px;
+  left: 15px;
+  font-weight: 400;
+  font-size: 12px;
+  text-shadow: #fc0 1px 0 10px;
 }
 
 .Default-cities {
@@ -23,7 +29,7 @@ h1 {
 }
 
 .Default-cities li {
-  color: #3f4e4f;
+  color: #000;
   display: inline;
   margin: 0 45px;
   font-size: 24px;
@@ -31,27 +37,33 @@ h1 {
   font-weight: 500;
   font-style: oblique;
 }
+
 .Users-data-weather {
   margin: 0px 25px;
   padding: 0;
 }
-.Users-data-weather ul {
+
+.Users-data-weather ul,
+.Weather-description,
+.Weather-temperature {
   list-style: none;
 }
-.Apps-container {
-  background: radial-gradient(
-    328px at 2.9% 15%,
-    rgb(191, 224, 251) 0%,
-    rgb(232, 233, 251) 25.8%,
-    rgb(252, 239, 250) 50.8%,
-    rgb(234, 251, 251) 77.6%,
-    rgb(240, 251, 244) 100.7%
-  );
-  max-width: 900px;
-  margin: 10px auto;
+
+.Weather-temperature {
+  margin-left: 55px;
 }
+
+.Apps-container {
+  background: rgba(0, 0, 0, 0.1);
+  max-width: 900px;
+  margin: 45px auto;
+  border-radius: 15px;
+  text-shadow: #fff 2px 0 10px;
+}
+
 .Weather-app {
   padding: 20px;
-  border: 1px solid #dadde1;
+  border: 1px solid transparent;
   border-radius: 5px;
+  box-shadow: 9px 9px 5px rgb(229, 211, 185);
 }
