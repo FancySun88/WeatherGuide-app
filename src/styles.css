@@ -2,6 +2,8 @@ body {
   font-family: arial, sans-serif;
   background-image: url(/images/sky.jpg);
   background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 h1 {
   color: #000;

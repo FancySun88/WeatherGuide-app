@@ -11,7 +11,7 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="src//styles.css" />
-
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <title>WeatherGuide</title>
   </head>
   <body>
@@ -28,11 +28,18 @@
           </div>
           <div>
             <div class="Users-data-weather">
-              <h1>Kyiv</h1>
+              <h1 id="city"></h1>
               <ul>
-                <li>Friday 05:00</li>
-                <li>June 29 2022</li>
-                <li>Clear</li>
+                <li>
+                  <span id="day"></span>
+                  <span id="time"></span>
+                </li>
+                <li>
+                  <span id="month"></span>
+                  <span id="date"></span>
+                  <span id="year"></span>
+                </li>
+                <li id="description"></li>
               </ul>
             </div>
           </div>
@@ -49,7 +56,7 @@
             <div class="col-6">
               <ul class="Weather-description">
                 <li>Humidity: <span id="humidity"></span>%</li>
-                <li>Wind: <span id="wind"></span> m/h</li>
+                <li>Wind: <span id="wind"></span> km/h</li>
               </ul>
             </div>
           </div>
