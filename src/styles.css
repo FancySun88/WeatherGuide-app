@@ -6,7 +6,6 @@ body {
   background-attachment: fixed;
 }
 h1 {
-  color: #000;
   font-size: 30px;
   font-weight: 700;
   line-height: 38px;
@@ -31,7 +30,6 @@ small {
 }
 
 .Default-cities li {
-  color: #000;
   display: inline;
   margin: 0 45px;
   font-size: 24px;
@@ -44,7 +42,9 @@ small {
   margin: 0px 25px;
   padding: 0;
 }
-
+.Weather-description:first-letter {
+  text-transform: capitalize;
+}
 .Users-data-weather ul,
 .Weather-description,
 .Weather-temperature {
@@ -60,12 +60,13 @@ small {
   max-width: 900px;
   margin: 45px auto;
   border-radius: 15px;
-  text-shadow: #fff 2px 0 10px;
+  color: rgb(229, 211, 185);
+  text-shadow: 1px 2px 1px #000;
 }
 
 .Weather-app {
   padding: 20px;
-  border: 1px solid transparent;
+  border: 1.5px solid rgb(229, 211, 185);
   border-radius: 5px;
   box-shadow: 9px 9px 5px rgb(229, 211, 185);
 }
