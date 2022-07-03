@@ -70,3 +70,6 @@ small {
   border-radius: 5px;
   box-shadow: 9px 9px 5px rgb(229, 211, 185);
 }
+strong {
+  font-size: 40px;
+}
