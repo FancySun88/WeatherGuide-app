@@ -12,6 +12,9 @@ h1 {
   padding: 0;
   margin: 0 0 0 30px;
 }
+strong {
+  font-size: 36px;
+}
 small {
   color: #000;
   position: fixed;
@@ -37,13 +40,49 @@ small {
   font-weight: 500;
   font-style: oblique;
 }
-
+.clearfix {
+  display: flex;
+}
 .Users-data-weather {
   margin: 0px 25px;
   padding: 0;
 }
 .Weather-description:first-letter {
   text-transform: capitalize;
+}
+.units {
+  font-size: 36px;
+}
+.form-field {
+  margin-left: 52px;
+  width: 85%;
+  margin-bottom: 10px;
+  margin-top: 0;
+}
+.input-field {
+  background-color: transparent;
+  color: rgb(229, 211, 185);
+  text-shadow: 1px 2px 1px #000;
+  border: 1.5px solid rgb(229, 211, 185);
+  border-radius: 5px;
+  box-shadow: 9px 9px 5px rgb(229, 211, 185);
+}
+.bottom-submit {
+  background-color: transparent;
+  color: rgb(229, 211, 185);
+  text-shadow: 1px 2px 1px #000;
+  border: 1.5px solid rgb(229, 211, 185);
+  border-radius: 5px;
+  box-shadow: 9px 9px 5px rgb(229, 211, 185);
+}
+.bottom-submit:hover {
+  background-color: rgb(229, 211, 185);
+  color: transparent;
+}
+.Weather-temperature img {
+  margin-top: -30px;
+  margin-left: -10px;
+  padding: 0;
 }
 .Users-data-weather ul,
 .Weather-description,
@@ -69,7 +108,4 @@ small {
   border: 1.5px solid rgb(229, 211, 185);
   border-radius: 5px;
   box-shadow: 9px 9px 5px rgb(229, 211, 185);
-}
-strong {
-  font-size: 40px;
 }
