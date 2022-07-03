@@ -31,6 +31,19 @@ function formatDate() {
   return `${time}`;
 }
 
+function handleSubmit(event) {
+  event.preventDefault();
+  let cityInputElement = document.querySelector("#users-input");
+  console.log(cityInputElement.value);
+  search(cityInputElement.value);
+}
+
+function search(city) {
+  let apiKey = "6b45fead1f572a2847620f61855bb862";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(showWeather);
+}
+
 let apiKey = "6b45fead1f572a2847620f61855bb862";
 let city = "Kyiv";
 let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
@@ -74,3 +87,8 @@ year.innerHTML = now.getFullYear();
 
 let time = document.querySelector("#time");
 time.innerHTML = formatDate();
+
+let form = document.querySelector("#search-form");
+form.addEventListener("submit", handleSubmit);
+
+search("Kyiv");
