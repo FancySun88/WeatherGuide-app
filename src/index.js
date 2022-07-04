@@ -7,7 +7,10 @@ function showWeather(response) {
   let humidityElement = document.querySelector("#humidity");
   humidityElement.innerHTML = response.data.main.humidity;
   let temperatureElement = document.querySelector("#temperature");
-  temperatureElement.innerHTML = Math.round(response.data.main.temp);
+
+  celsiusTemp = response.data.main.temp;
+
+  temperatureElement.innerHTML = Math.round(celsiusTemp);
   let windElement = document.querySelector("#wind");
   windElement.innerHTML = Math.round(response.data.wind.speed);
   let iconElement = document.querySelector("#icon");
@@ -90,8 +93,6 @@ time.innerHTML = formatDate();
 let form = document.querySelector("#search-form");
 form.addEventListener("submit", handleSubmit);
 
-search("Kyiv");
-
 function getCurrentLocation(event) {
   event.preventDefault();
   navigator.geolocation.getCurrentPosition(getCurrentPositionWeather);
@@ -139,3 +140,29 @@ function searchCityFourWeather(event) {
   event.preventDefault();
   search("Poznan");
 }
+let celsiusTemp = null;
+
+let fahrenheitTemperature = document.querySelector("#fahrenheit-link");
+fahrenheitTemperature.addEventListener("click", convertToFahrenheit);
+
+let celsiusTemperature = document.querySelector("#celsius-link");
+celsiusTemperature.addEventListener("click", convertToCelsius);
+
+function convertToFahrenheit(event) {
+  event.preventDefault();
+  let temperatureElement = document.querySelector("#temperature");
+  celsiusTemperature.classList.remove("active");
+  fahrenheitTemperature.classList.add("active");
+  let fahrenheit = (celsiusTemp * 9) / 5 + 32;
+  temperatureElement.innerHTML = Math.round(fahrenheit);
+}
+
+function convertToCelsius(event) {
+  event.preventDefault();
+  let temperatureElement = document.querySelector("#temperature");
+  celsiusTemperature.classList.add("active");
+  fahrenheitTemperature.classList.remove("active");
+  temperatureElement.innerHTML = Math.round(celsiusTemp);
+}
+
+search("Kyiv");
