@@ -34,11 +34,14 @@ small {
 
 .Default-cities li {
   display: inline;
-  margin: 0 45px;
-  font-size: 24px;
-  line-height: 36px;
-  font-weight: 500;
-  font-style: oblique;
+  margin: 0 25px;
+}
+.default-cities-btn {
+  border-color: transparent;
+  background-color: transparent;
+  color: rgb(229, 211, 185);
+  text-shadow: 1px 2px 1px #000;
+  font-size: 22px;
 }
 .clearfix {
   display: flex;
@@ -62,7 +65,7 @@ small {
 .input-field {
   background-color: transparent;
   color: rgb(229, 211, 185);
-  text-shadow: 1px 2px 1px #000;
+  text-shadow: 1px 1px 1px #000;
   border: 1.5px solid rgb(229, 211, 185);
   border-radius: 5px;
   box-shadow: 9px 9px 5px rgb(229, 211, 185);
