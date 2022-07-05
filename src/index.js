@@ -1,5 +1,4 @@
 function showWeather(response) {
-  console.log(response.data);
   let string = `${response.data.name}, ${response.data.sys.country}`;
   document.querySelector("#city").innerHTML = string;
   let descriptionElement = document.querySelector("#description");
@@ -7,9 +6,7 @@ function showWeather(response) {
   let humidityElement = document.querySelector("#humidity");
   humidityElement.innerHTML = response.data.main.humidity;
   let temperatureElement = document.querySelector("#temperature");
-
   celsiusTemp = response.data.main.temp;
-
   temperatureElement.innerHTML = Math.round(celsiusTemp);
   let windElement = document.querySelector("#wind");
   windElement.innerHTML = Math.round(response.data.wind.speed);
@@ -46,6 +43,56 @@ function search(city) {
   axios.get(apiUrl).then(showWeather);
 }
 
+function getCurrentLocation(event) {
+  event.preventDefault();
+  navigator.geolocation.getCurrentPosition(getCurrentPositionWeather);
+}
+
+function getCurrentPositionWeather(position) {
+  let apiKey = "6b45fead1f572a2847620f61855bb862";
+  let lat = position.coords.latitude;
+  let long = position.coords.longitude;
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(showWeather);
+}
+
+function searchCityOneWeather(event) {
+  event.preventDefault();
+  search("Kyiv");
+}
+
+function searchCityTwoWeather(event) {
+  event.preventDefault();
+  search("Amsterdam");
+}
+
+function searchCityThreeWeather(event) {
+  event.preventDefault();
+  search("Valletta");
+}
+
+function searchCityFourWeather(event) {
+  event.preventDefault();
+  search("Poznan");
+}
+
+function convertToFahrenheit(event) {
+  event.preventDefault();
+  let temperatureElement = document.querySelector("#temperature");
+  celsiusTemperature.classList.remove("active");
+  fahrenheitTemperature.classList.add("active");
+  let fahrenheit = (celsiusTemp * 9) / 5 + 32;
+  temperatureElement.innerHTML = Math.round(fahrenheit);
+}
+
+function convertToCelsius(event) {
+  event.preventDefault();
+  let temperatureElement = document.querySelector("#temperature");
+  celsiusTemperature.classList.add("active");
+  fahrenheitTemperature.classList.remove("active");
+  temperatureElement.innerHTML = Math.round(celsiusTemp);
+}
+
 let apiKey = "6b45fead1f572a2847620f61855bb862";
 let city = "Kyiv";
 let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
@@ -60,6 +107,7 @@ let days = [
   "Friday",
   "Saturday",
 ];
+
 let day = document.querySelector("#day");
 day.innerHTML = days[now.getDay()];
 
@@ -93,53 +141,21 @@ time.innerHTML = formatDate();
 let form = document.querySelector("#search-form");
 form.addEventListener("submit", handleSubmit);
 
-function getCurrentLocation(event) {
-  event.preventDefault();
-  navigator.geolocation.getCurrentPosition(getCurrentPositionWeather);
-}
-
-function getCurrentPositionWeather(position) {
-  let apiKey = "6b45fead1f572a2847620f61855bb862";
-  let lat = position.coords.latitude;
-  let long = position.coords.longitude;
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${apiKey}&units=metric`;
-  axios.get(apiUrl).then(showWeather);
-}
-
 let currentPosisitionButton = document.querySelector("#button-geoposition");
 currentPosisitionButton.addEventListener("click", getCurrentLocation);
 
 let cityOne = document.querySelector("#defaultCityOne");
 cityOne.addEventListener("click", searchCityOneWeather);
 
-function searchCityOneWeather(event) {
-  event.preventDefault();
-  search("Kyiv");
-}
-
 let cityTwo = document.querySelector("#defaultCityTwo");
 cityTwo.addEventListener("click", searchCityTwoWeather);
-
-function searchCityTwoWeather(event) {
-  event.preventDefault();
-  search("Amsterdam");
-}
 
 let cityThree = document.querySelector("#defaultCityThree");
 cityThree.addEventListener("click", searchCityThreeWeather);
 
-function searchCityThreeWeather(event) {
-  event.preventDefault();
-  search("Valletta");
-}
-
 let cityFour = document.querySelector("#defaultCityFour");
 cityFour.addEventListener("click", searchCityFourWeather);
 
-function searchCityFourWeather(event) {
-  event.preventDefault();
-  search("Poznan");
-}
 let celsiusTemp = null;
 
 let fahrenheitTemperature = document.querySelector("#fahrenheit-link");
@@ -147,22 +163,5 @@ fahrenheitTemperature.addEventListener("click", convertToFahrenheit);
 
 let celsiusTemperature = document.querySelector("#celsius-link");
 celsiusTemperature.addEventListener("click", convertToCelsius);
-
-function convertToFahrenheit(event) {
-  event.preventDefault();
-  let temperatureElement = document.querySelector("#temperature");
-  celsiusTemperature.classList.remove("active");
-  fahrenheitTemperature.classList.add("active");
-  let fahrenheit = (celsiusTemp * 9) / 5 + 32;
-  temperatureElement.innerHTML = Math.round(fahrenheit);
-}
-
-function convertToCelsius(event) {
-  event.preventDefault();
-  let temperatureElement = document.querySelector("#temperature");
-  celsiusTemperature.classList.add("active");
-  fahrenheitTemperature.classList.remove("active");
-  temperatureElement.innerHTML = Math.round(celsiusTemp);
-}
 
 search("Kyiv");
