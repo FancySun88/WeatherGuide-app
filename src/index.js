@@ -1,12 +1,26 @@
-function getForecast(coordinates) {
-  console.log(coordinates);
-  let apiKey = "6b45fead1f572a2847620f61855bb862";
-  let forecastUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
-  axios.get(forecastUrl).then(showForecast);
+function formatDate() {
+  let hours = now.getHours();
+  if (hours < 10) {
+    hours = `0${hours}`;
+  }
+  let minutes = now.getMinutes();
+  if (minutes < 10) {
+    minutes = `0${minutes}`;
+  }
+  let time = `${hours}:${minutes}`;
+  return `${time}`;
 }
 
-function showForecast(response) {
-  console.log(response.data.daily);
+function handleSubmit(event) {
+  event.preventDefault();
+  let cityInputElement = document.querySelector("#users-input");
+  search(cityInputElement.value);
+}
+
+function search(city) {
+  let apiKey = "6b45fead1f572a2847620f61855bb862";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(showWeather);
 }
 
 function showWeather(response) {
@@ -31,29 +45,33 @@ function showWeather(response) {
   getForecast(response.data.coord);
 }
 
-function formatDate() {
-  let hours = now.getHours();
-  if (hours < 10) {
-    hours = `0${hours}`;
-  }
-  let minutes = now.getMinutes();
-  if (minutes < 10) {
-    minutes = `0${minutes}`;
-  }
-  let time = `${hours}:${minutes}`;
-  return `${time}`;
-}
-
-function handleSubmit(event) {
-  event.preventDefault();
-  let cityInputElement = document.querySelector("#users-input");
-  search(cityInputElement.value);
-}
-
-function search(city) {
+function getForecast(coordinates) {
   let apiKey = "6b45fead1f572a2847620f61855bb862";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
-  axios.get(apiUrl).then(showWeather);
+  let forecastUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
+  axios.get(forecastUrl).then(showForecast);
+}
+
+function showForecast(response) {
+  let forecastElement = document.querySelector("#weather-forecast");
+  let forecastHTML = `<div class="row">`;
+  let days = ["Tue", "Wed", "Thu", "Fri", "Sat", "Sun", "Mon"];
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      `
+      <div class="col-2">
+      <div class="Forecast-day">${day}</div>
+      <div class="Forecast-description"></div>
+      <img src="#" alt="" class="forecast-img" />
+      <div class="Weather-forecast-temperature">
+        <span class="Forecast-temperature-max">18°</span>
+        <span class="Forecast-temperature-min">10°</span>
+      </div>
+    </div>
+  `;
+  });
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
 }
 
 function getCurrentLocation(event) {
@@ -178,3 +196,4 @@ let celsiusTemperature = document.querySelector("#celsius-link");
 celsiusTemperature.addEventListener("click", convertToCelsius);
 
 search("Kyiv");
+showForecast();
