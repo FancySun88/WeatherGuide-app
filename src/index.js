@@ -121,6 +121,9 @@ function searchCityFourWeather(event) {
   event.preventDefault();
   search("Poznan");
 }
+function forecastConvertToFarehrenheit(event) {
+  event.preventDefault();
+}
 
 function convertToFahrenheit(event) {
   event.preventDefault();
@@ -129,6 +132,7 @@ function convertToFahrenheit(event) {
   fahrenheitTemperature.classList.add("active");
   let fahrenheit = (celsiusTemp * 9) / 5 + 32;
   temperatureElement.innerHTML = Math.round(fahrenheit);
+  forecastConvertToFarehrenheit(event);
 }
 
 function convertToCelsius(event) {
