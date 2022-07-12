@@ -132,7 +132,6 @@ function convertToFahrenheit(event) {
   fahrenheitTemperature.classList.add("active");
   let fahrenheit = (celsiusTemp * 9) / 5 + 32;
   temperatureElement.innerHTML = Math.round(fahrenheit);
-  forecastConvertToFarehrenheit(event);
 }
 
 function convertToCelsius(event) {
@@ -145,7 +144,8 @@ function convertToCelsius(event) {
 
 let apiKey = "6b45fead1f572a2847620f61855bb862";
 let city = "Kyiv";
-let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+let units = "metric";
+let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}`;
 axios.get(apiUrl).then(showWeather);
 let now = new Date();
 let days = [
@@ -215,4 +215,3 @@ let celsiusTemperature = document.querySelector("#celsius-link");
 celsiusTemperature.addEventListener("click", convertToCelsius);
 
 search("Kyiv");
-showForecast();
