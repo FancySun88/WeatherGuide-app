@@ -127,3 +127,22 @@ small {
   border-radius: 5px;
   box-shadow: 9px 9px 5px rgb(229, 211, 185);
 }
+
+.Forecast-day {
+  margin-left: 30px;
+  font-size: 17px;
+}
+
+.Forecast-temperature-max {
+  margin-left: 30px;
+  font-size: 30px;
+  font-weight: 500px;
+  color: rgb(229, 211, 185);
+  text-shadow: 1px 1px 1px #000;
+}
+
+.forecast-img {
+  width: 70px;
+  padding: 0;
+  margin: 0 8px;
+}
